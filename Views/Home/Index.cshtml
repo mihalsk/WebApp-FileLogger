@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Работники";
+}
+
+@using webapp.ViewModels
+@using webapp.Models
+@model IndexViewModel
+
+<style>
+    td {
+        padding: 5px;
+    }
+
+    tr:nth-child(even) {
+        background: #CCC
+    }
+
+    tr:nth-child(odd) {
+        background: #FFF
+    }
+</style>
+
+<a class="btn btn-primary" href="~/Home/EmployeeCreate">Добавить</a>
+<table>
+    <tr><td>Имя</td><td>Возраст</td><td>Комментарий</td></tr>
+    @foreach (Employee e in Model.Employees)
+    {
+<tr>
+    <td><a href="~/Home/EmployeeDetail/@e.Id">@e.Name</a></td>
+    <td>@e.Age</td>
+    <td>@e.Comment</td>
+    <td>
+        <a class="btn btn-primary" href="~/Home/EmployeeEdit/@e.Id">редактировать</a>
+    </td>
+    <td>
+        <a class="btn btn-primary" href="~/Home/EmployeeDelete/@e.Id">удалить</a>
+    </td>
+</tr>
+    }
+</table>
